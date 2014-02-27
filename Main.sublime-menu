@@ -11,12 +11,12 @@
                 "id": "package-settings",
                 "children": [
                     {
-                        "caption": "Command on Save",
+                        "caption": "Save Notify VM",
                         "children": [
                             {
                                 "command": "open_file", "args":
                                 {
-                                    "file": "${packages}/User/CommandOnSave.sublime-settings"
+                                    "file": "${packages}/User/SaveNotifyVM.sublime-settings"
                                 },
                                 "caption": "Settings – User"
                             }
