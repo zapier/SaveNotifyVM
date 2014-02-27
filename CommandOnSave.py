@@ -6,7 +6,7 @@ import httplib, urllib
 class CommandOnSave(sublime_plugin.EventListener):
     def on_post_save(self, view):
 
-        settings = sublime.load_settings('CommandOnSave.sublime-settings').get('commands')
+        settings = sublime.load_settings('SaveNotifyVM.sublime-settings').get('commands')
         file = view.file_name()
 
         if not settings == None:
