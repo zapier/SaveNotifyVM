@@ -3,7 +3,7 @@ import sublime_plugin
 import subprocess
 import httplib, urllib
 
-class CommandOnSave(sublime_plugin.EventListener):
+class SaveNotifyVM(sublime_plugin.EventListener):
     def on_post_save(self, view):
 
         settings = sublime.load_settings('SaveNotifyVM.sublime-settings').get('commands')
