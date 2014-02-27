@@ -1,9 +1,8 @@
-SublimeCommandOnSave
-====================
+This Sublime Text 3 plugin will post file change events against a Vagrant VM so that a script inside the VM can listen for file change events and react accordingly (touch the file, trigger watch scripts, etc.)
 
-Sublime Text 3 plugin which executes given commands on file save
+This is necessary because most OS' do a terrible job at quickly and reliably sending file change events across VM shared-filesystem bridges like NFS.
 
-The Sublime Text 2 version of this plugin is available at [ST2-CommandOnSave](https://github.com/klaascuvelier/ST2-CommandOnSave)
+Note: this repo does not include a script for actually doing anything with the request that is posted (you are responsible for handling it).
 
 
 Installation
@@ -15,33 +14,12 @@ An other way is by cloning this repository into the package folder of Sublime
 
 Usage
 =====
-This plugin reads commands from the settings file. The commands settings-key is an associative array of paths and their commands. Everytime a file is saved, all commands for every matched path-key is executed.
+After installing, open up your local settings and paste this configuation and update is appropriately.
 
-For more info, see the examples
-
-
-Examples
-========
+```
     {
-      "commands": {
-        // example 1: project is in folder /Users/klaascuvelier/Projects/example/
-        // rsync files to other server on save
-        "/Users/klaascuvelier/Projects/example/": [
-            "rsync -avz /Users/klaascuvelier/Projects/example/ server@server:/home/server/projects/example/ &"
-        ],
-
-        // example 2:
-        // just run a bash script on save (you can put much more commands in there)
-        "/Users/klaascuvelier/Projects/example2/": [
-            "/Users/klaascuvelier/Projects/example2/command.sh &"
-        ],
-
-        // example 3:
-        // everytime a file is saved, add, commit and push it to git
-        "/Users/klaascuvelier/Projects/Sublime3/SublimeCommandOnSave/": [
-            "git add -u",
-            "git commit",
-            "git push"
-        ]
-      }
+      "path_to_repo": "/Users/mikeknoop/Code/zapier",
+      "vm_ip": "192.168.50.100",
+      "vm_port": "3600"
     }
+```
