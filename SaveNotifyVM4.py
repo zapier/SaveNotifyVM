@@ -6,12 +6,14 @@ from http import client
 
 class SaveNotifyVM(sublime_plugin.EventListener):
     def on_post_save(self, view):
+        print("save")
 
         settings = sublime.load_settings('SaveNotifyVM.sublime-settings').get('commands')
         file = view.file_name()
-
+        print(settings == None, settings)
         if not settings == None:
             path = settings.get('path_to_repo', '')
+            print(file.startswith(path), file, path)
             if file.startswith(path):
                 command.replace('{{file}}', file)
                 fielname = file.replace(path+'/', '')
