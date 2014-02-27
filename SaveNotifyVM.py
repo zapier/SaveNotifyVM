@@ -2,7 +2,7 @@ import sublime
 import sublime_plugin
 import subprocess
 import urllib
-from httplib import client
+from http import client
 
 class SaveNotifyVM(sublime_plugin.EventListener):
     def on_post_save(self, view):
