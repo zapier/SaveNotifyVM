@@ -4,7 +4,7 @@ import subprocess
 import urllib
 from http import client
 
-class SaveNotifyVM3(sublime_plugin.EventListener):
+class SaveNotifyVM(sublime_plugin.EventListener):
     def on_post_save(self, view):
 
         settings = sublime.load_settings('SaveNotifyVM.sublime-settings').get('commands')
