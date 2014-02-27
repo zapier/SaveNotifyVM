@@ -14,12 +14,12 @@ An other way is by cloning this repository into the package folder of Sublime
 
 Usage
 =====
-After installing, open up your local settings and paste this configuation and update is appropriately.
+After installing, open up your `Preferences > Package Settings > Save Notify VM > User settings` and paste this config and update is appropriately.
 
 ```
-    {
-      "path_to_repo": "/Users/mikeknoop/Code/zapier",
-      "vm_ip": "192.168.50.100",
-      "vm_port": "3600"
-    }
+{
+  "path_to_repo": "/Users/mikeknoop/Code/zapier",
+  "vm_ip": "192.168.50.100",
+  "vm_port": "3600"
+}
 ```
