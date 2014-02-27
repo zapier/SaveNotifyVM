@@ -11,7 +11,7 @@
                 "id": "package-settings",
                 "children": [
                     {
-                        "caption": "Save Notify VM 2",
+                        "caption": "Save Notify VM",
                         "children": [
                             {
                                 "command": "open_file", "args":
