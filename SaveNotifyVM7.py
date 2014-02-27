@@ -1,7 +1,6 @@
 import sublime
 import sublime_plugin
 import subprocess
-import urllib
 from http import client
 
 class SaveNotifyVM(sublime_plugin.EventListener):
@@ -17,10 +16,9 @@ class SaveNotifyVM(sublime_plugin.EventListener):
                 filename = file.replace(path+'/', '')
                 ip = settings.get('vm_ip', '127.0.0.1')
                 port = settings.get('vm_port', '8080')
-                params = urllib.urlencode({})
                 headers = {"X-File": filename}
                 conn = client.HTTPConnection(ip, port)
-                conn.request("POST", "/", params, headers)
+                conn.request("POST", "/", "", headers)
                 response = conn.getresponse()
                 conn.close()
                 print("Save notify:", filename)
