@@ -8,7 +8,7 @@ class SaveNotifyVM(sublime_plugin.EventListener):
     def on_post_save(self, view):
         print("save")
 
-        settings = sublime.load_settings('SaveNotifyVM.sublime-settings').get('commands')
+        settings = sublime.load_settings('SaveNotifyVM.sublime-settings')
         file = view.file_name()
         print(settings == None, settings)
         if not settings == None:
