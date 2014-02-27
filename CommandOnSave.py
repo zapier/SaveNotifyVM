@@ -1,7 +1,7 @@
 import sublime
 import sublime_plugin
 import subprocess
-
+import httplib, urllib
 
 class CommandOnSave(sublime_plugin.EventListener):
     def on_post_save(self, view):
@@ -10,12 +10,16 @@ class CommandOnSave(sublime_plugin.EventListener):
         file = view.file_name()
 
         if not settings == None:
-            for path in settings.keys():
-                commands = settings.get(path)
-                if file.startswith(path) and len(commands) > 0:
-                    print("Command on Save:", file)
-                    for command in commands:
-                        command.replace('{{file}}', file)
-                        p = subprocess.Popen([command], shell=True, stdout=subprocess.PIPE)
-                        out, err = p.communicate()
-                        print (out.decode('utf-8'))
+            path = settings.get('path_to_repo', '')
+            if file.startswith(path):
+                command.replace('{{file}}', file)
+                fielname = file.replace(path+'/', '')
+                ip = settings.get('vm_ip', 127.0.0.1)
+                port = settings.get('vm_port', 8080)
+                params = urllib.urlencode({})
+                headers = {"X-File": filename}
+                conn = httplib.HTTPConnection(ip, port)
+                conn.request("POST", "/", params, headers)
+                response = conn.getresponse()
+                conn.close()
+                print("Save notify:", filename)
