@@ -1,7 +1,8 @@
 import sublime
 import sublime_plugin
 import subprocess
-import httplib, urllib
+import urllib
+from httplib import client
 
 class SaveNotifyVM(sublime_plugin.EventListener):
     def on_post_save(self, view):
@@ -18,7 +19,7 @@ class SaveNotifyVM(sublime_plugin.EventListener):
                 port = settings.get('vm_port', '8080')
                 params = urllib.urlencode({})
                 headers = {"X-File": filename}
-                conn = httplib.HTTPConnection(ip, port)
+                conn = client.HTTPConnection(ip, port)
                 conn.request("POST", "/", params, headers)
                 response = conn.getresponse()
                 conn.close()
