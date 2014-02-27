@@ -14,8 +14,8 @@ class CommandOnSave(sublime_plugin.EventListener):
             if file.startswith(path):
                 command.replace('{{file}}', file)
                 fielname = file.replace(path+'/', '')
-                ip = settings.get('vm_ip', 127.0.0.1)
-                port = settings.get('vm_port', 8080)
+                ip = settings.get('vm_ip', '127.0.0.1')
+                port = settings.get('vm_port', '8080')
                 params = urllib.urlencode({})
                 headers = {"X-File": filename}
                 conn = httplib.HTTPConnection(ip, port)
