@@ -20,7 +20,11 @@ class SaveNotifyVM(sublime_plugin.EventListener):
                     port = settings.get('vm_port', '8080')
                     headers = {"X-File": filename}
                     conn = client.HTTPConnection(ip, port, False, 2)
-                    conn.request("POST", "/", "", headers)
+                    try:
+                        conn.request("POST", "/", "", headers)
+                    except:
+                        print("Save did not notify (exception)")
+                        pass
                     response = conn.getresponse()
                     conn.close()
                     print("Save notify:", filename)
