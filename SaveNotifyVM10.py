@@ -22,11 +22,11 @@ class SaveNotifyVM(sublime_plugin.EventListener):
                     conn = client.HTTPConnection(ip, port, False, 2)
                     try:
                         conn.request("POST", "/", "", headers)
+                        response = conn.getresponse()
+                        conn.close()
+                        print("Save notify:", filename)
                     except:
                         print("Save did not notify (exception)")
                         pass
-                    response = conn.getresponse()
-                    conn.close()
-                    print("Save notify:", filename)
                 thread = threading.Thread(target=notify)
                 thread.start()
